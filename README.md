@@ -40,6 +40,7 @@ README.md
 3. API endpoints:
    - `POST /api/users/register` — Register a new user
    - `POST /api/users/login` — Login
+   - `GET /api/echo?message=<value>` — Reflects the provided message back in the response (intentionally vulnerable to XSS for demo)
 
 ## CodeQL Scanning
 - CodeQL workflow is in `.github/workflows/codeql.yml`
