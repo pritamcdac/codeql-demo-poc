@@ -19,6 +19,16 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Security Testing Demo API!' });
 });
 
+// Intentionally vulnerable XSS endpoint for demo purposes
+app.get('/api/echo', (req, res) => {
+  const { message } = req.query;
+  if (!message) {
+    return res.status(400).send('Please provide a message query parameter.');
+  }
+  // Reflects user input directly without sanitization (vulnerable to XSS)
+  res.send(message);
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
