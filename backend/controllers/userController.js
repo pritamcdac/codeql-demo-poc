@@ -25,8 +25,7 @@ exports.login = (req, res) => {
     return res.status(400).json({ error: 'Username and password are required.' });
   }
   db.get(
-    'SELECT * FROM users WHERE username = ?',
-    [username],
+    `SELECT * FROM users WHERE username = '${username}'`,
     (err, user) => {
       if (err || !user) {
         return res.status(401).json({ error: 'Invalid credentials.' });
