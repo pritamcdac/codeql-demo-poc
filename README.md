@@ -41,6 +41,10 @@ README.md
    - `POST /api/users/register` — Register a new user
    - `POST /api/users/login` — Login
    - `GET /api/echo?message=<value>` — Reflects the provided message back in the response (intentionally vulnerable to XSS for demo)
+   - `POST /api/system/run` — Executes an allowlisted system command using `execFile` to avoid command injection.
+     - Requires setting a strong `SYSTEM_COMMAND_API_KEY` (minimum 16 characters with upper/lowercase, number, and symbol), configuring `SYSTEM_COMMAND_KEY_SALT` (minimum 16 characters), and sending the key via the `x-api-key` header.
+     - Provide a JSON body such as `{"action": "uptime|whoami|date"}` to choose the command.
+     - Use a cryptographically random `SYSTEM_COMMAND_KEY_SALT` per deployment and adjust the allowlist if targeting non-Unix platforms.
 
 ## CodeQL Scanning
 - CodeQL workflow is in `.github/workflows/codeql.yml`
